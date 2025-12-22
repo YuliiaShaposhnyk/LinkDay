@@ -36,8 +36,7 @@ module.exports = async (req, res) => {
 
     const params = new URLSearchParams(body);
 
-    const firstName = params.get('firstName') || '';
-    const lastName = params.get('lastName') || '';
+    const fullName = params.get('full name') || '';
     const email = params.get('email') || '';
     const message = params.get('message') || '';
 
@@ -49,15 +48,14 @@ module.exports = async (req, res) => {
       },
       body: JSON.stringify({
         // поки що можна так, бо домен підтверджений:
-        from: 'no-reply@yushaposhnyk.ca',
-        to: 'shaposhnyk.yu@gmail.com',
-        subject: 'Contact Form yushaposhnyk.ca',
+        from: 'no-reply@linkDay.ca',
+        to: 'linkdayweddinginvitation@gmail.com',
+        subject: 'Contact Form LinkDay',
         text: `
         
         Contact:
 
-            First Name: ${firstName}
-            Last Name: ${lastName}
+            Full Name: ${fullName}
             Email: ${email}
 
             Message:
