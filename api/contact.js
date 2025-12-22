@@ -48,7 +48,7 @@ module.exports = async (req, res) => {
       },
       body: JSON.stringify({
         // поки що можна так, бо домен підтверджений:
-        from: 'no-reply@linkDay.ca',
+        from: 'no-reply@linkday.ca',
         to: 'linkdayweddinginvitation@gmail.com',
         subject: 'Contact Form LinkDay',
         text: `
