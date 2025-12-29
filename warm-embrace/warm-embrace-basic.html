@@ -75,19 +75,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 class="basec-form-wrapp"
                 data-wf-page-id="68f2add753fb3ab0a0df8b51"
                 data-wf-element-id="fe2adda9-9918-a7e0-0393-ccb89e3b8b23">
-            < class="step-1-form">
+            <div class="step-1-form">
               <h1 class="georgia-30px">Contact Details</h1>
               <div class="contact-info-form">
                 <div class="div-field"><label for="B-Contact-Name" class="sf-regular-18px">Full Name</label><input class="templates-fields w-input" maxlength="256" name="B-Contact-Name" data-name="B | Contact Name" placeholder="Julia" type="text" id="B-Contact-Name"></div>
                 <div class="div-field"><label for="B-Email-Address" class="sf-regular-18px">Email Address</label><input class="templates-fields w-input" maxlength="256" name="B-Email-Address" data-name="B | Email Address" placeholder="julia@gmail.com" type="email" id="B-Email-Address"></div>
               </div>
-              <input type="hidden" name="page-url" id="page-url">
+              <div class="url-code-ember w-embed w-script"><input type="hidden" name="Page URL" id="page-url">
                 <script>
-                  (function () {
-                    var el = document.getElementById("page-url");
-                    if (el) el.value = window.location.href;
-                  })();
+                  document.addEventListener("DOMContentLoaded", function () {
+                    const pageUrlField = document.getElementById('page-url');
+                    if (pageUrlField) pageUrlField.value = window.location.href;
+                  });
                 </script>
+              </div>
             </div>
             <div class="step-1-form">
               <h1 class="georgia-30px">Wedding Info</h1>
@@ -249,18 +250,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <script src="../js/webflow.js" type="text/javascript"></script><!--  Google Tag Manager (noscript)  -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WX25KL8K" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!--  End Google Tag Manager (noscript)  -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector('form[action="/api/basic"]');
-  if (!form) return;
-
-  form.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" && e.target.tagName !== "TEXTAREA") {
-      e.preventDefault();
-    }
-  });
-});
-</script>
 
   <script src="https://fengyuanchen.github.io/datepicker/js/datepicker.js"></script>
   <script>
