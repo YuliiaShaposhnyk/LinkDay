@@ -76,7 +76,7 @@ module.exports = async (req, res) => {
 
     // успіх → редірект на сторінку подяки
     res.statusCode = 303;
-    res.setHeader('Location', '/thank-you-form');
+    res.setHeader('Location', '/thank-you-form.html');
     res.end();
   } catch (err) {
     console.error('Handler error:', err);
