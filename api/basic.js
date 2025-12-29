@@ -36,6 +36,7 @@ export default async function handler(req, res) {
     const color4 = params.get("color4") || "";
     const pathurl = params.get("page-url") || "";
 
+
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {

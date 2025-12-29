@@ -81,12 +81,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="div-field"><label for="B-Contact-Name" class="sf-regular-18px">Full Name</label><input class="templates-fields w-input" maxlength="256" name="B-Contact-Name" data-name="B | Contact Name" placeholder="Julia" type="text" id="B-Contact-Name"></div>
                 <div class="div-field"><label for="B-Email-Address" class="sf-regular-18px">Email Address</label><input class="templates-fields w-input" maxlength="256" name="B-Email-Address" data-name="B | Email Address" placeholder="julia@gmail.com" type="email" id="B-Email-Address"></div>
               </div>
-              <div class="url-code-ember w-embed w-script"><input type="hidden" name="Page URL" id="page-url">
+              <input type="hidden" name="page-url" id="page-url">
                 <script>
-                  document.addEventListener("DOMContentLoaded", function () {
-                    const pageUrlField = document.getElementById('page-url');
-                    if (pageUrlField) pageUrlField.value = window.location.href;
-                  });
+                  (function () {
+                    var el = document.getElementById("page-url");
+                    if (el) el.value = window.location.href;
+                  })();
                 </script>
               </div>
             </div>
