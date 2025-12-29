@@ -40,7 +40,7 @@ module.exports = async (req, res) => {
     const BEmailAddress = params.get('B-Email-Address') || '';
     const BNameofPartnerOne = params.get('B-Name-of-Partner-One') || '';
     const BNameofPartnerTwo = params.get('B-Name-of-Partner-Two') || '';
-    const WeddingDay = params.get('Wedding-Day') || '';
+    const WeddingDay = params.get('B-Date') || '';
     const BTheCeremonyAddress = params.get('B-The-Ceremony-Address') || '';
     const BSameLocation = params.get('B-Same-Location') || '';
     const banquetAddress = params.get('banquetAddress') || '';
@@ -49,7 +49,7 @@ module.exports = async (req, res) => {
     const color2 = params.get('color2') || '';
     const color3 = params.get('color3') || '';
     const color4 = params.get('color4') || '';
-    const pathurl = params.get('page-url') || '';
+    const pathurl = formData.get("page-url") || formData.get("Page URL") || "";
 
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
