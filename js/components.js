@@ -41,4 +41,3 @@ if (window.location.hash) {
     }, 150);
   }
 }
-
