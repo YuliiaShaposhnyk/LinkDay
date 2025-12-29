@@ -29,15 +29,30 @@
   }
 })();
 
-if (window.location.hash) {
-  const target = document.querySelector(window.location.hash);
-  if (target) {
-    setTimeout(() => {
-      const header = document.querySelector(".navigation"); // твій хедер-клас
-      const offset = header ? header.offsetHeight : 90;
+document.addEventListener("click", (e) => {
+  const a = e.target.closest('a[href^="/#"], a[href^="#"]');
+  if (!a) return;
 
-      const y = target.getBoundingClientRect().top + window.pageYOffset - offset - 12;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    }, 150);
-  }
-}
+  const href = a.getAttribute("href");
+  const hash = href.includes("#") ? "#" + href.split("#")[1] : null;
+  if (!hash) return;
+
+  // якщо ми вже на головній — не перезавантажуємо
+  const isHome = location.pathname === "/" || location.pathname.endsWith("index.html");
+  const isSamePageHash = href.startsWith("#") || (href.startsWith("/#") && isHome);
+
+  if (!isSamePageHash) return;
+
+  e.preventDefault();
+  history.replaceState(null, "", hash);
+
+  const target = document.querySelector(hash);
+  if (!target) return;
+
+  const header = document.querySelector(".navigation");
+  const offset = header ? header.offsetHeight : 90;
+
+  const y = target.getBoundingClientRect().top + window.pageYOffset - offset - 12;
+  window.scrollTo({ top: y, behavior: "smooth" });
+});
+
