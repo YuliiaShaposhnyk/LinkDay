@@ -250,26 +250,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <script src="../js/webflow.js" type="text/javascript"></script><!--  Google Tag Manager (noscript)  -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WX25KL8K" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!--  End Google Tag Manager (noscript)  -->
-  <script>
-  const form = document.getElementById("base");
-  const sendBtn = document.getElementById("sendBtn");
-  // 🔒 Забороняємо відправку при натисканні Enter
-  form.addEventListener("keypress", function (e) {
-    if (e.key === "Enter") {
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector('form[action="/api/basic"]');
+  if (!form) return;
+
+  form.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && e.target.tagName !== "TEXTAREA") {
       e.preventDefault();
     }
   });
-  // ✅ Відправляємо тільки після натискання кнопки Send
-  sendBtn.addEventListener("click", function () {
-    // можна зробити валідацію перед відправкою
-    if (form.checkValidity()) {
-      console.log("Form submitted!");
-      form.submit(); // або AJAX-запит сюди
-    } else {
-      alert("Будь ласка, заповни всі поля.");
-    }
-  });
+});
 </script>
+
   <script src="https://fengyuanchen.github.io/datepicker/js/datepicker.js"></script>
   <script>
   $(document).ready(function () {
