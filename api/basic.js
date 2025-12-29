@@ -1,12 +1,6 @@
 // /api/basic.js
-
-export const config = {
-  runtime: "nodejs18.x",
-};
-
 export default async function handler(req, res) {
   try {
-    // GET: діагностика
     if (req.method === "GET") {
       if (!process.env.RESEND_API_KEY) {
         return res.status(500).send("NO RESEND_API_KEY in environment");
@@ -14,7 +8,6 @@ export default async function handler(req, res) {
       return res.status(200).send("BASIC FUNCTION OK, KEY PRESENT");
     }
 
-    // тільки POST
     if (req.method !== "POST") {
       return res.status(405).send("Method Not Allowed");
     }
@@ -23,18 +16,16 @@ export default async function handler(req, res) {
       return res.status(500).send("NO RESEND_API_KEY in environment");
     }
 
-    // читаємо raw body (працює для application/x-www-form-urlencoded)
     const chunks = [];
     for await (const chunk of req) chunks.push(chunk);
     const body = Buffer.concat(chunks).toString("utf8");
-
     const params = new URLSearchParams(body);
 
     const BContactName = params.get("B-Contact-Name") || "";
     const BEmailAddress = params.get("B-Email-Address") || "";
     const BNameofPartnerOne = params.get("B-Name-of-Partner-One") || "";
     const BNameofPartnerTwo = params.get("B-Name-of-Partner-Two") || "";
-    const WeddingDay = params.get("B-Date") || ""; // ✅ у тебе name="B-Date"
+    const WeddingDay = params.get("B-Date") || "";
     const BTheCeremonyAddress = params.get("B-The-Ceremony-Address") || "";
     const BSameLocation = params.get("B-Same-Location") ? "Yes" : "No";
     const banquetAddress = params.get("banquetAddress") || "";
@@ -88,7 +79,6 @@ Dress Code:
       return res.status(500).send(`Resend error: ${response.status}\n\n${text}`);
     }
 
-    // успіх → редірект на Square
     res.status(303).setHeader("Location", "https://square.link/u/Qd3Nl2Ho");
     return res.end();
   } catch (err) {
