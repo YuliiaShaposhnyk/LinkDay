@@ -29,12 +29,16 @@
   }
 })();
 
-// scroll to hash after includes
 if (window.location.hash) {
   const target = document.querySelector(window.location.hash);
   if (target) {
     setTimeout(() => {
-      target.scrollIntoView({ behavior: "smooth" });
-    }, 100);
+      const header = document.querySelector(".navigation"); // твій хедер-клас
+      const offset = header ? header.offsetHeight : 90;
+
+      const y = target.getBoundingClientRect().top + window.pageYOffset - offset - 12;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }, 150);
   }
 }
+
