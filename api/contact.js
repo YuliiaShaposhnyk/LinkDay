@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
 
     const fullName = params.get('Full-Name') || '';
     const email = params.get('Contact-Email') || '';
-    const message = params.get('Contact-Email') || '';
+    const message = params.get('Contact-Message') || '';
 
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
