@@ -111,7 +111,7 @@ ${guests.length ? guests.join("\n") : "(no guests provided)"}
       body: JSON.stringify({
         from: "no-reply@linkday.ca",
         to: "linkdayweddinginvitation@gmail.com",
-        subject: `NEW Client | Premium Package | ${templateName || "Unknown template"}`,
+        subject: `NEW Client | Premium Package`,
         text: emailText,
       }),
     });

@@ -70,20 +70,20 @@ display:none;
       <div class="div-form-template">
         <div class="wrapp-35"><img src="../images/first-screen.png" loading="lazy" alt="" class="form-img"></div>
         <div id="base" class="wedding-info-template w-form">
-          <form id="wf-form-Base-Package" name="wf-form-Base-Package" data-name="Base Package" redirect="https://square.link/u/nlstcUmG" data-redirect="https://square.link/u/nlstcUmG" method="get" class="basec-form-wrapp" data-wf-page-id="68f2b1a9da9414035be4d24b" data-wf-element-id="b61b0b3d-8e31-6141-96b3-b061c03b36e5">
+          <form action="/api/standard" method="POST" id="wf-form-Standard-Package" name="wf-form-Standard-Package" class="basec-form-wrapp" redirect="https://square.link/u/nlstcUmG" data-redirect="https://square.link/u/nlstcUmG">
             <div class="step-1-form">
               <h1 class="georgia-30px">Contact Details</h1>
               <div class="contact-info-form">
                 <div class="div-field"><label for="S-Contact-Name" class="sf-regular-18px">Full Name</label><input class="templates-fields w-input" maxlength="256" name="S-Contact-Name" data-name="S | Contact Name" placeholder="Julia" type="text" id="S-Contact-Name"></div>
                 <div class="div-field"><label for="S-Email-Address" class="sf-regular-18px">Email Address</label><input class="templates-fields w-input" maxlength="256" name="S-Email-Address" data-name="S | Email Address" placeholder="julia@gmail.com" type="email" id="S-Email-Address"></div>
               </div>
-              <div class="url-code-ember w-embed w-script"><input type="hidden" name="Page URL" id="page-url">
+              <div class="url-code-ember w-embed w-script"><input type="hidden" name="page-url" id="page-url">
                 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const pageUrlField = document.getElementById('page-url');
-  if (pageUrlField) pageUrlField.value = window.location.href;
-});
-</script>
+                  (function () {
+                    var el = document.getElementById("page-url");
+                    if (el) el.value = window.location.href;
+                  })();
+                </script>
               </div>
             </div>
             <div class="step-1-form">
@@ -413,26 +413,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <script src="../js/webflow.js" type="text/javascript"></script><!--  Google Tag Manager (noscript)  -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WX25KL8K" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!--  End Google Tag Manager (noscript)  -->
-  <script>
-  const form = document.getElementById("base");
-  const sendBtn = document.getElementById("sendBtn");
-  // 🔒 Забороняємо відправку при натисканні Enter
-  form.addEventListener("keypress", function (e) {
-    if (e.key === "Enter") {
-      e.preventDefault();
-    }
-  });
-  // ✅ Відправляємо тільки після натискання кнопки Send
-  sendBtn.addEventListener("click", function () {
-    // можна зробити валідацію перед відправкою
-    if (form.checkValidity()) {
-      console.log("Form submitted!");
-      form.submit(); // або AJAX-запит сюди
-    } else {
-      alert("Будь ласка, заповни всі поля.");
-    }
-  });
-</script>
+
   <script src="https://fengyuanchen.github.io/datepicker/js/datepicker.js"></script>
   <script>
   $(document).ready(function () {
@@ -621,6 +602,27 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
+</script>
+
+<script>
+  const form = document.getElementById("base");
+  const sendBtn = document.getElementById("sendBtn");
+  // 🔒 Забороняємо відправку при натисканні Enter
+  form.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+    }
+  });
+  // ✅ Відправляємо тільки після натискання кнопки Send
+  sendBtn.addEventListener("click", function () {
+    // можна зробити валідацію перед відправкою
+    if (form.checkValidity()) {
+      console.log("Form submitted!");
+      form.submit(); // або AJAX-запит сюди
+    } else {
+      alert("Будь ласка, заповни всі поля.");
+    }
+  });
 </script>
 
 <script src="../js/components.js"></script>  
