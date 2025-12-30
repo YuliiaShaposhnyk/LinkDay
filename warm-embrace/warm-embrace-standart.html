@@ -70,20 +70,20 @@ display:none;
       <div class="div-form-template">
         <div class="wrapp-35"><img src="../images/hero_2.png" loading="lazy" alt="" class="form-img"></div>
         <div id="base" class="wedding-info-template w-form">
-          <form id="wf-form-Base-Package" name="wf-form-Base-Package" data-name="Base Package" redirect="https://square.link/u/nlstcUmG" data-redirect="https://square.link/u/nlstcUmG" method="get" class="basec-form-wrapp" data-wf-page-id="68f2b248708529e196c2b7df" data-wf-element-id="b61b0b3d-8e31-6141-96b3-b061c03b36e5">
+          <form action="/api/standard" method="POST" id="wf-form-Standard-Package" name="wf-form-Standard-Package" class="basec-form-wrapp" redirect="https://square.link/u/nlstcUmG" data-redirect="https://square.link/u/nlstcUmG">
             <div class="step-1-form">
               <h1 class="georgia-30px">Contact Details</h1>
               <div class="contact-info-form">
                 <div class="div-field"><label for="S-Contact-Name" class="sf-regular-18px">Full Name</label><input class="templates-fields w-input" maxlength="256" name="S-Contact-Name" data-name="S | Contact Name" placeholder="Julia" type="text" id="S-Contact-Name"></div>
                 <div class="div-field"><label for="S-Email-Address" class="sf-regular-18px">Email Address</label><input class="templates-fields w-input" maxlength="256" name="S-Email-Address" data-name="S | Email Address" placeholder="julia@gmail.com" type="email" id="S-Email-Address"></div>
               </div>
-              <div class="url-code-ember w-embed w-script"><input type="hidden" name="Page URL" id="page-url">
+              <div class="url-code-ember w-embed w-script"><input type="hidden" name="page-url" id="page-url">
                 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const pageUrlField = document.getElementById('page-url');
-  if (pageUrlField) pageUrlField.value = window.location.href;
-});
-</script>
+                  (function () {
+                    var el = document.getElementById("page-url");
+                    if (el) el.value = window.location.href;
+                  })();
+                </script>
               </div>
             </div>
             <div class="step-1-form">
