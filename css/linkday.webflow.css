@@ -4460,7 +4460,8 @@
   align-items: flex-start;
   height: 100vh;
   padding-top: 150px;
-  padding-bottom: 200px;
+  padding-bottom: 100px;
+  min-height: 120vh;
   display: flex;
   position: relative;
 }
