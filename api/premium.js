@@ -1,4 +1,4 @@
-// api/standard.js
+// api/premium.js
 
 module.exports = async (req, res) => {
   // === GET: діагностика ===
@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
     if (!process.env.RESEND_API_KEY) {
       res.status(500).send("NO RESEND_API_KEY in environment");
     } else {
-      res.status(200).send("STANDARD FUNCTION OK, KEY PRESENT");
+      res.status(200).send("PREMIUM FUNCTION OK, KEY PRESENT");
     }
     return;
   }
@@ -37,61 +37,66 @@ module.exports = async (req, res) => {
     const pageUrl = params.get("page-url") || "";
     const templateName = params.get("templateName") || "";
 
-    // --- Standard fields ---
-    const SContactName = params.get("S-Contact-Name") || "";
-    const SEmailAddress = params.get("S-Email-Address") || "";
+    // --- Premium fields (P-...) ---
+    const PContactName = params.get("P-Contact-Name") || "";
+    const PEmailAddress = params.get("P-Email-Address") || "";
 
-    const SPartnerOne = params.get("S-Name-of-Partner-One") || "";
-    const SPartnerTwo = params.get("S-Name-of-Partner-Two") || "";
+    const PPartnerOne = params.get("P-Name-of-Partner-One") || "";
+    const PPartnerTwo = params.get("P-Name-of-Partner-Two") || "";
 
-    const SDate = params.get("S-Date") || "";
-    const SCeremonyAddress = params.get("S-The-Ceremony-Address") || "";
+    const PDate = params.get("P-Date") || "";
+    const PCeremonyAddress = params.get("P-The-Ceremony-Address") || "";
 
     // checkbox: якщо unchecked — буде null
-    const SSameLocation = params.get("S-Same-Location") ? "Yes" : "No";
+    const PSameLocation = params.get("P-Same-Location") ? "Yes" : "No";
 
     const banquetAddress = params.get("banquetAddress") || "";
-    const SSchedule = params.get("S-The-Day-s-Schedule") || "";
+    const PSchedule = params.get("P-The-Day-s-Schedule") || "";
 
     const color1 = params.get("color1") || "";
     const color2 = params.get("color2") || "";
     const color3 = params.get("color3") || "";
     const color4 = params.get("color4") || "";
 
-    // --- guests 1..20 ---
+    const POurStory = params.get("P-Our-Story") || "";
+
+    // --- guests 1..50 ---
     const guests = [];
-    for (let i = 1; i <= 20; i++) {
+    for (let i = 1; i <= 50; i++) {
       const val = (params.get(`guests-${i}`) || "").trim();
       if (val) guests.push(`${i < 10 ? "0" + i : i}. ${val}`);
     }
 
     const emailText = `
-Standard Package | ${templateName}
+Premium Package | ${templateName}
 
 Page: ${pageUrl}
 
 Contact:
-- Full Name: ${SContactName}
-- Email: ${SEmailAddress}
+- Full Name: ${PContactName}
+- Email: ${PEmailAddress}
 
 Newlyweds:
-- Partner One: ${SPartnerOne}
-- Partner Two: ${SPartnerTwo}
+- Partner One: ${PPartnerOne}
+- Partner Two: ${PPartnerTwo}
 
 Wedding Info:
-- Wedding Day: ${SDate}
-- Ceremony Address: ${SCeremonyAddress}
-- Same Location: ${SSameLocation}
+- Wedding Day: ${PDate}
+- Ceremony Address: ${PCeremonyAddress}
+- Same Location: ${PSameLocation}
 - Banquet Address: ${banquetAddress}
 
 Schedule:
-${SSchedule}
+${PSchedule}
 
 Dress Code:
 - Color 1: ${color1}
 - Color 2: ${color2}
 - Color 3: ${color3}
 - Color 4: ${color4}
+
+Our Story:
+${POurStory}
 
 Guest List (${guests.length}):
 ${guests.length ? guests.join("\n") : "(no guests provided)"}
@@ -106,7 +111,7 @@ ${guests.length ? guests.join("\n") : "(no guests provided)"}
       body: JSON.stringify({
         from: "no-reply@linkday.ca",
         to: "linkdayweddinginvitation@gmail.com",
-        subject: `NEW Client | Standard Package`,
+        subject: `NEW Client | Premium Package | ${templateName || "Unknown template"}`,
         text: emailText,
       }),
     });
@@ -118,9 +123,9 @@ ${guests.length ? guests.join("\n") : "(no guests provided)"}
       return;
     }
 
-    // успіх → редірект на оплату Standard
+    // успіх → редірект на оплату Premium
     res.statusCode = 303;
-    res.setHeader("Location", "https://square.link/u/nlstcUmG");
+    res.setHeader("Location", "https://square.link/u/vL74Osk5");
     res.end();
   } catch (err) {
     console.error("Handler error:", err);
@@ -128,7 +133,7 @@ ${guests.length ? guests.join("\n") : "(no guests provided)"}
   }
 };
 
-// ✅ ВАЖЛИВО для Vercel, щоб не було помилки runtime
+// ✅ важливо для Vercel (щоб не впасти з runtime)
 module.exports.config = {
   runtime: "nodejs",
 };
